@@ -77,12 +77,15 @@ const BentoItem = ({ children, className, delay = 0 }: { children: React.ReactNo
 
 // --- Sections ---
 
-const EnvelopeSection = ({ onComplete }: { onComplete: () => void }) => {
+const EnvelopeSection = ({ onComplete, onStartAudio }: { onComplete: () => void, onStartAudio: () => void }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [showCard, setShowCard] = useState(false);
 
   const handleOpen = () => {
     if (isOpen) return;
+    
+    // Play music directly on interaction (required for iOS Safari)
+    onStartAudio();
     
     // Confetti burst
     confetti({
@@ -581,7 +584,14 @@ export default function App() {
       <AnimatePresence mode="wait">
         {!showMain ? (
           <motion.div key="envelope" exit={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }} transition={{ duration: 1 }}>
-            <EnvelopeSection onComplete={() => setShowMain(true)} />
+            <EnvelopeSection 
+              onComplete={() => setShowMain(true)} 
+              onStartAudio={() => {
+                if (audioRef.current && !isMuted) {
+                  audioRef.current.play().catch(e => console.log(e));
+                }
+              }}
+            />
           </motion.div>
         ) : (
           <motion.div key="main" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>

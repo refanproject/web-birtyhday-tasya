@@ -376,14 +376,15 @@
 .carousel-layout .box {
   position: absolute;
   bottom: 40px;
-  left: 40px;
+  left: 50%;
   color: var(--color-deeprose);
-  transform-origin: 0% 100%;
-  transform: rotate(-90deg);
-  font-size: 10px;
+  transform-origin: center center;
+  transform: translateX(-50%);
+  font-size: 12px;
   line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  opacity: .3;
+  opacity: .5;
+  text-align: center;
   font-family: var(--font-display);
 }
