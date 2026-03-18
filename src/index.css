@@ -365,7 +365,7 @@
 
 .carousel-layout {
   position: absolute;
-  z-index: 0;
+  z-index: 10;
   top: 0;
   left: 0;
   width: 100%;
@@ -375,16 +375,16 @@
 
 .carousel-layout .box {
   position: absolute;
-  bottom: 40px;
+  top: 50%;
   left: 50%;
   color: var(--color-deeprose);
   transform-origin: center center;
-  transform: translateX(-50%);
+  transform: translate(-50%, clamp(160px, 26vw, 270px));
   font-size: 12px;
   line-height: 1.4;
   text-transform: uppercase;
   letter-spacing: 0.3em;
-  opacity: .5;
+  opacity: .8;
   text-align: center;
   font-family: var(--font-display);
 }
